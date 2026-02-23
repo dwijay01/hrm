@@ -53,6 +53,9 @@
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
+header("Content-Security-Policy: default-src * 'unsafe-inline' 'unsafe-eval' data: blob:;");
+header("X-XSS-Protection: 0");
+
 define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'production');
 
 /*
