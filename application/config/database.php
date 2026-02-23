@@ -25,5 +25,5 @@ $db['default'] = array(
     'autoinit' => TRUE,//ci version 3.x
     'stricton' => FALSE,
     'failover' => array(),
-    'save_queries' => TRUE
+    'save_queries' => FALSE
 );
