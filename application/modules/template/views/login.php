@@ -92,13 +92,6 @@
                     </div>
 
 
-                    <div class="form-group">
-                        <label class="control-label" for="captcha"><?php echo $captcha_image ?></label>
-
-                        <input type="captcha" placeholder="<?php echo display('captcha') ?>" name="captcha" id="captcha"
-                            class="form-control">
-                    </div>
-
                     <div>
                         <button type="reset" class="btn btn-info"><?php echo display('reset') ?></button>
                         <button type="submit" class="btn btn-success"><?php echo display('login') ?></button>
