@@ -11,4 +11,7 @@ services:
       - .:/var/www/html
     environment:
       - TERM=xterm
-    # Aplikasi akan connect ke database eksternal melalui host VPS (misal: localhost VPS / IP DB container exisiting)
+      - DB_HOST=172.17.0.1
+      - DB_USER=root
+      - DB_PASS=
+      - DB_NAME=hrm_db
