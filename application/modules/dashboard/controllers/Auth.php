@@ -14,6 +14,17 @@ class Auth extends MX_Controller
 			'auth_model'
 		));
 
+		// Auto-Migrate Indonesian Language
+		$this->load->dbforge();
+		if ($this->db->table_exists('language') && !$this->db->field_exists('indonesian', 'language')) {
+			$this->dbforge->add_column('language', [
+				'indonesian' => [
+					'type' => 'TEXT',
+					'null' => TRUE
+				]
+			]);
+		}
+
 		$this->load->helper('captcha');
 	}
 

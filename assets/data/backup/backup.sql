@@ -1692,7 +1692,8 @@ CREATE TABLE `job_advertisement` (
 CREATE TABLE `language` (
   `id` int(11) NOT NULL,
   `phrase` varchar(100) NOT NULL,
-  `english` varchar(255) NOT NULL
+  `english` varchar(255) NOT NULL,
+  `indonesian` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
