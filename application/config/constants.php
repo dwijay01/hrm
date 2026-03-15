@@ -92,7 +92,7 @@ else {
     $protocol = 'http://';
 }
 $dirname = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/').'/';
-$root=$protocol.$_SERVER['HTTP_HOST'].$dirname;
+$root=$protocol.(isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost').$dirname;
 
 // Setup Local assets URL
 define('BASE_URL', $root);

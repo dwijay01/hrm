@@ -54,6 +54,7 @@ class Lic
     private $api_domain  = 'secure.situscom.com';
     private $api_url     = 'https://secure.situscom.com/alpha/class.licencenew.php';
     private $whitelist   = '{license_key}';
+    private $is_https;
 
     public function __construct()
     {
@@ -85,7 +86,7 @@ class Lic
 
     private function domain() 
     {
-        $url = ($this->is_https() ? "https://" : "http://").$_SERVER["HTTP_HOST"];
+        $url = ($this->is_https() ? "https://" : "http://").(isset($_SERVER["HTTP_HOST"]) ? $_SERVER["HTTP_HOST"] : "localhost");
         $url.= str_replace(basename($_SERVER["SCRIPT_NAME"]), "", $_SERVER["SCRIPT_NAME"]); 
 
         // regex can be replaced with parse_url
@@ -109,19 +110,19 @@ class Lic
     
     private function full_domain() 
     {
-        $url = ($this->is_https() ? "https://" : "http://").$_SERVER["HTTP_HOST"];
+        $url = ($this->is_https() ? "https://" : "http://").(isset($_SERVER["HTTP_HOST"]) ? $_SERVER["HTTP_HOST"] : "localhost");
         $url.= str_replace(basename($_SERVER["SCRIPT_NAME"]), "", $_SERVER["SCRIPT_NAME"]);
         
         $details = parse_url($url);
-        $sub_folders = explode('/',$details['path']);
+        $sub_folders = explode('/',(isset($details['path']) ? $details['path'] : ''));
         
         $full_url = "";
         
         // if install in subfolder then take full_domian with that sub-folder
         if(sizeof($sub_folders) >= 2){
-            $full_url = $_SERVER["HTTP_HOST"].$details['path'];
+            $full_url = (isset($_SERVER["HTTP_HOST"]) ? $_SERVER["HTTP_HOST"] : "localhost").$details['path'];
         }else{
-            $full_url = $_SERVER["HTTP_HOST"].'/';
+            $full_url = (isset($_SERVER["HTTP_HOST"]) ? $_SERVER["HTTP_HOST"] : "localhost").'/';
         }
 
         return $full_url;

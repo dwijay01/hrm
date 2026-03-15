@@ -9,8 +9,9 @@ class Home extends MX_Controller {
  		$this->db->query('SET SESSION sql_mode = ""');
  		$this->load->model('home_model'); 
  		$this->load->model('rewardpoint/rewardpoints_model');
+ 		$this->load->model('attendance/Shift_model');
 
-		if (! $this->session->userdata('isLogIn'))
+		if (! $this->session->userdata('isLogIn') && php_sapi_name() != 'cli')
 			redirect('login');
  	}
  
@@ -126,6 +127,17 @@ class Home extends MX_Controller {
 		$data['latestrecruitedemple'] = $this->home_model->latest_recuited_employee();
 		$data['employee_points']   = $this->rewardpoints_model->dshboard_employee_points();
 		$data['employee_box_data']   = $this->rewardpoints_model->get_employee_box_data();
+		
+		// Get Today's Shift for Employee
+		$employee_id = $this->session->userdata('employee_id');
+		if (!$employee_id && isset($this->session->userdata['employee_id'])) {
+			$employee_id = $this->session->userdata['employee_id'];
+		}
+		$data['today_shift'] = null;
+		if ($employee_id) {
+			$data['today_shift'] = $this->Shift_model->get_roster_by_employee_date($employee_id, date('Y-m-d'));
+		}
+
 		$data['module']      = "dashboard";
 		$data['page']        = "home/index";
 		echo Modules::run('template/layout', $data); 
@@ -448,6 +460,26 @@ class Home extends MX_Controller {
 
         echo json_encode($data_points);
 
+	}
+
+	public function manual_pdf()
+	{
+		$this->load->library('pdfgenerator');
+		$data['title'] = "User Manual HRIS v4";
+		
+		$data['setting'] = $this->db->get('setting')->row();
+        $data['user_info'] = $this->session->userdata();
+		
+		$html = $this->load->view('home/manual_pdf_view', $data, true);
+		
+		// If triggered from CLI or specifically requested to save
+		if (php_sapi_name() == "cli") {
+			$pdf = $this->pdfgenerator->generate($html, 'Manual_HRIS_v4', false);
+			file_put_contents('Manual_HRIS_v4.pdf', $pdf);
+			echo "PDF saved to Manual_HRIS_v4.pdf\n";
+		} else {
+			$this->pdfgenerator->generate($html, 'Manual_HRIS_v4');
+		}
 	}
 
 }

@@ -100,6 +100,18 @@
 
             <div class="row">
 
+                <?php if(!empty($today_shift)){ ?>
+                <div class="col-sm-12">
+                    <div class="alert alert-info" style="font-size: 18px; border-radius: 10px; border-left: 5px solid #00c0ef;">
+                        <i class="fa fa-calendar-check-o"></i> 
+                        <strong>Jadwal Hari Ini:</strong> <?php echo $today_shift->shift_name; ?> 
+                        <span class="badge" style="background-color: #fff; color: #00c0ef; margin-left: 10px;">
+                            <?php echo date('H:i', strtotime($today_shift->start_time)); ?> - <?php echo date('H:i', strtotime($today_shift->end_time)); ?>
+                        </span>
+                    </div>
+                </div>
+                <?php } ?>
+
                 <!-- HRM Box -->
                 <div class="col-xs-12 col-sm-6 col-md-3">
                     <div class="small-box bg-green whitecolor">
@@ -203,7 +215,11 @@
                     <div class="panel panel-bd lobidisable">
                         <div class="panel-heading">
                             <div class="panel-title">
-                                <h4><?php echo display('latest_notice')?></h4>
+                                <h4><?php echo display('latest_notice')?> 
+                                    <a href="<?php echo base_url('dashboard/home/manual_pdf') ?>" target="_blank" class="btn btn-xs btn-danger pull-right">
+                                        <i class="fa fa-file-pdf-o"></i> Manual PDF
+                                    </a>
+                                </h4>
                             </div>
                         </div>
                         <div class="panel-body">

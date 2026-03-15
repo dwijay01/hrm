@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$root = (isset($_SERVER["HTTPS"]) ? "https://" : "http://") . $_SERVER["HTTP_HOST"];
+$root = (isset($_SERVER["HTTPS"]) ? "https://" : "http://") . (isset($_SERVER["HTTP_HOST"]) ? $_SERVER["HTTP_HOST"] : "localhost");
 $root .= str_replace(basename($_SERVER["SCRIPT_NAME"]), "", $_SERVER["SCRIPT_NAME"]);
 $config["base_url"] = $root;
 
@@ -42,7 +42,7 @@ if (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] 
 }
 
 $dirname = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/') . '/';
-$root = $protocol . $_SERVER['HTTP_HOST'] . $dirname;
+$root = $protocol . (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost') . $dirname;
 
 $config["base_url"] = $root;
 

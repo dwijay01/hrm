@@ -5,13 +5,13 @@ $(function (){
               var attendance = $("#attendancetitle").val();
               var employee  = $("#employeetitle").val();
               var absenttitle = $("#absenttitle").val();
-              var absent      = $("absent").val();
+              var absent      = $("#absent").val();
               var recruitedtitle = $("#recruitedtitle").val();
               var recruitedyeartitle = $("#recruitedyeartitle").val();
               var loanpaymenttitle = $("#loanpaymenttitle").val();
               var loanreceivettitle = $("#loanreceivettitle").val();
               var paymentrecvtitle = $("#paymentrecvtitle").val();
-              var awardedtitle =$("awardedtitle").val();
+              var awardedtitle = $("#awardedtitle").val();
               var awardedcurrnttitle = $("#awardedcurrnttitle").val();
               var fatlable = atnlabel.substring(0, atnlabel.length - 1);
               var label1 = fatlable.split(",");
