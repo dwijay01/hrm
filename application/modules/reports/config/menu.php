@@ -66,30 +66,30 @@ $HmvcMenu["reports"] = array(
             "permission" => "read"
         
     ),  
-    // "asset" => array(
-    //     //menu name
+    "asset" => array(
+        //menu name
        
-    //         "controller" => "employee_controller",
-    //         "method"     => "employee_assets",
-    //         "permission" => "read"
+            "controller" => "employee_controller",
+            "method"     => "employee_assets",
+            "permission" => "read"
         
-    // ),
-    // "benifit_report" => array(
-    //     //menu name
+    ),
+    "benifit_report" => array(
+        //menu name
        
-    //         "controller" => "employee_controller",
-    //         "method"     => "benifit_list",
-    //         "permission" => "read"
+            "controller" => "employee_controller",
+            "method"     => "benifit_list",
+            "permission" => "read"
         
-    // ),  
-    // "custom_report" => array(
-    //     //menu name
+    ),  
+    "custom_report" => array(
+        //menu name
        
-    //         "controller" => "employee_controller",
-    //         "method"     => "custom_report",
-    //         "permission" => "read"
+            "controller" => "employee_controller",
+            "method"     => "custom_report",
+            "permission" => "read"
         
-    // ),            
+    ),            
     ), 
 
     //group level name

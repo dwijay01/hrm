@@ -91,6 +91,18 @@
                 $date = date('Y-m-d',strtotime($atten_data->intime));
                 $in_time = date('H:i',strtotime($atten_data->intime));
                 $out_time = date('H:i',strtotime($atten_data->outtime));
+                
+                $CI =& get_instance();
+                $CI->load->model('Shift_model');
+                $employee = (!empty($_POST['employee_id'])?$_POST['employee_id']:'');
+                if (empty($employee) && isset($employee_info->employee_id)) {
+                    $employee = $employee_info->employee_id;
+                }
+                $roster = $CI->Shift_model->get_roster_by_employee_date($employee, $date);
+                if ($roster) {
+                    $attendence_rule_info->start_time = $roster->start_time;
+                    $attendence_rule_info->end_time = $roster->end_time;
+                }
 
                 $attendence_setup_in_time = strtotime($attendence_rule_info->start_time);
                 $attendence_setup_end_time = strtotime($attendence_rule_info->end_time);

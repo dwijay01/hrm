@@ -31,7 +31,21 @@ $HmvcMenu["attendance"] = array(
             "method"     => "att_log_report",
             "permission" => "read"
         ),
+        'device_connection'  => array( 
+            "controller" => "Home",
+            "method"     => "device_connection",
+            "permission" => "read"
+        ),
+        'shift_setup'  => array( 
+            "controller" => "Shift",
+            "method"     => "shift_setup",
+            "permission" => "read"
+        ),
+        'shift_roster'  => array( 
+            "controller" => "Shift",
+            "method"     => "shift_roster",
+            "permission" => "read"
+        ),
   
 
 );
-   
